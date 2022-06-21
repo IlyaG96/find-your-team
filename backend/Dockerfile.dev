@@ -6,7 +6,7 @@ ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 
 # install psycopg2 dependencies
-RUN apk add postgresql-dev gcc python3-dev musl-dev
+RUN apk add postgresql-dev gcc python3-dev musl-dev --no-cache
 
 # create directory for the django-user user
 RUN mkdir -p /home/django-user
@@ -24,8 +24,7 @@ WORKDIR $APP_HOME
 
 # install dependencies
 COPY ./requirements.txt .
-RUN pip install --upgrade pip
-RUN pip install -r requirements.txt
+RUN pip install -r requirements.txt --no-cache-dir
 
 # copy entrypoint.sh
 COPY ./entrypoint.sh .

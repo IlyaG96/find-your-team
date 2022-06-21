@@ -18,14 +18,14 @@
 </details>
 
 
-### Системные требования
+## Системные требования
 
 - Docker и docker-compose [Как установить Docker?](https://help.reg.ru/hc/ru/articles/4408047640977-%D0%9A%D0%B0%D0%BA-%D1%83%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%B8%D1%82%D1%8C-Docker-%D0%BD%D0%B0-Ubuntu)
 - DockerDesktop для MacOS и Windows [скачать](https://www.docker.com/products/docker-desktop/)
 - Python 3.10
 - Postgres [Как установить?](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-postgresql-on-ubuntu-18-04)
 
-### Как запустить dev-версию продукта
+## Как запустить dev-версию продукта
 
 
 Создайте в директории find-your-team две переменных окружения:
@@ -47,11 +47,24 @@
 - `POSTGRES_PASSWORD`=`postgres` - если БД должна находиться в контейнере.
 - `POSTGRES_DB`=`postgres` - если БД должна находиться в контейнере.
 
-Выполните команду:
+
+#### Затем выполните команду:
 ```shell
 docker-compose -f docker-compose.dev.yaml up --build
 ```
 
+#### Для проведения миграций выполните скрипт в отдельном окне терминала:
+
+```shell
+docker-compose -f docker-compose.dev.yaml exec web ./manage.py migrate
+```
+
+#### Для создания суперпользователя выполните скрипт в отдельном окне терминала:
+```shell
+docker-compose -f docker-compose.dev.yaml exec web ./manage.py createsuperuser
+```
+
+
 После успешной сборки приложения, оно будет доступно по [по адресу http://127.0.0.1:1337/admin](http://127.0.0.1:1337/admin)
 
-### Другие способы запуска приложения не рекомендуются
+### Другие способы запуска приложения не рекомендуются.
