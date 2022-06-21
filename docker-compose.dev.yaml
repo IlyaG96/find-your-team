@@ -1,0 +1,39 @@
+version: '3.8'
+
+services:
+  web:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile.dev
+    command: gunicorn config.wsgi:application --bind 0.0.0.0:8000
+    volumes:
+      - static_volume:/home/django-user/web/staticfiles
+      - media_volume:/home/django-user/web/mediafiles
+    env_file:
+      - ./.env
+    depends_on:
+      - db
+    expose:
+      - 8000
+  db:
+    image: postgres:14.0-alpine
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    env_file:
+      - ./.env.db
+  nginx:
+    build:
+      context: ./nginx
+      dockerfile: Dockerfile.dev
+    volumes:
+      - static_volume:/home/django-user/web/staticfiles
+      - media_volume:/home/django-user/web/mediafiles
+    ports:
+      - '1337:80'
+    depends_on:
+      - web
+
+volumes:
+  postgres_data:
+  static_volume:
+  media_volume:
