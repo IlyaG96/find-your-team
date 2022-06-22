@@ -25,6 +25,21 @@
 - Python 3.10
 - Postgres [Как установить?](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-postgresql-on-ubuntu-18-04)
 
+
+## Как работать с репозиторием проекта
+
+1) Склонируйте репозиторий на локальную машину
+
+2) Создаем ветку по примеру feature_github_login
+- Пример feature_vndv
+- Всю работу проводим в созданной ветке
+- Стараемся коммитить чаще
+- Перед тем как сделать push, не забываем подтянуть все изменения из main
+- После завершения работы пишем понятный commit, как add feature <feature_name>, fix bug
+- Делаем pull requeste, git push origin <название Вашей ветк>
+- Хорошая статья как правильно работать с Git (https://medium.com/the-code-times/six-rules-of-a-good-tone-in-using-git-2a117d904576)
+
+
 ## Как запустить dev-версию продукта
 
 
